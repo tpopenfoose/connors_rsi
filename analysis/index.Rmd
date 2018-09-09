@@ -1,9 +1,162 @@
 ---
-title: "Home"
+title: "Exploratory"
 site: workflowr::wflow_site
-output:
-  workflowr::wflow_html:
-    toc: false
+output: workflowr::wflow_html
+editor_options: 
+  chunk_output_type: console
 ---
 
-Welcome to my research website.
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE, 
+  message = TRUE, 
+  warning = TRUE, 
+  error = TRUE
+)
+```
+
+```{r libraries, message = FALSE, warning = FALSE}
+library(skimr)
+library(tidyquant)
+```
+
+## Strategy
+
+$$ \text{BTO} = \text{Adjusted} > \text{SMA (200) } \& \text{ RSI (2)} < 5 $$
+
+$$ \text{STC} = \text{Adjusted} < \text{SMA (200) } \vee \text{ Close} > \text{SMA (5)} $$
+
+### Data
+
+```{r get-symbols}
+df <- tq_get(c("IWM", "QQQ", "SPY"), from = "2005-01-01", to = "2015-01-01")
+```
+
+### Indicators
+
+```{r indicators}
+df <- 
+  df %>% 
+  group_by(symbol) %>% 
+  arrange(date) %>% 
+  tq_mutate(
+    select     = adjusted, 
+    mutate_fun = SMA, 
+    n          = 5L, 
+    col_rename = "SMA5"
+  ) %>% 
+  tq_mutate(
+    select     = adjusted, 
+    mutate_fun = SMA, 
+    n          = 200L, 
+    col_rename = "SMA200"
+  ) %>% 
+  tq_mutate(
+    select     = adjusted, 
+    mutate_fun = RSI, 
+    n          = 2L, 
+    maType     = SMA, 
+    col_rename = "RSI2"
+  ) %>% 
+  mutate(
+    chg1 = (adjusted - lag(adjusted, n = 1L))/adjusted, 
+    chg3 = (adjusted - lag(adjusted, n = 3L))/adjusted, 
+    chg5 = (adjusted - lag(adjusted, n = 5L))/adjusted, 
+  )
+```
+
+### Signals
+
+```{r signals}
+df <- 
+  df %>% 
+  mutate(
+    rsi2_lt_5    = if_else(RSI2 < 5,         TRUE, FALSE), 
+    cl_gte_sma5  = if_else(adjusted >= SMA5,  TRUE, FALSE), 
+    cl_lt_sma200 = if_else(adjusted < SMA200, TRUE, FALSE), 
+    bto          = lag(rsi2_lt_5, n = 1L) & !lag(cl_lt_sma200, n = 1L),
+    stc          = lag(cl_lt_sma200, n = 1L) | lag(cl_gte_sma5, n = 1L),
+    position     = case_when(
+      bto  ~ TRUE, 
+      stc  ~ FALSE, 
+      TRUE ~ NA
+    ), 
+    position     = na.locf(position, na.rm = FALSE)
+  )
+```
+
+## Analysis
+
+### Trade validation
+
+```{r}
+x <- which(df$bto)
+#' Test first 10 observations; remember to lag
+all(
+  df$adjusted[(x[1] - 1)] > df$SMA200[(x[1] - 1)] & df$RSI2[(x[1] - 1)] < 5, 
+  df$adjusted[(x[2] - 1)] > df$SMA200[(x[2] - 1)] & df$RSI2[(x[2] - 1)] < 5, 
+  df$adjusted[(x[3] - 1)] > df$SMA200[(x[3] - 1)] & df$RSI2[(x[3] - 1)] < 5, 
+  df$adjusted[(x[4] - 1)] > df$SMA200[(x[4] - 1)] & df$RSI2[(x[4] - 1)] < 5, 
+  df$adjusted[(x[5] - 1)] > df$SMA200[(x[5] - 1)] & df$RSI2[(x[5] - 1)] < 5, 
+  df$adjusted[(x[6] - 1)] > df$SMA200[(x[6] - 1)] & df$RSI2[(x[6] - 1)] < 5, 
+  df$adjusted[(x[7] - 1)] > df$SMA200[(x[7] - 1)] & df$RSI2[(x[7] - 1)] < 5, 
+  df$adjusted[(x[8] - 1)] > df$SMA200[(x[8] - 1)] & df$RSI2[(x[8] - 1)] < 5, 
+  df$adjusted[(x[9] - 1)] > df$SMA200[(x[9] - 1)] & df$RSI2[(x[9] - 1)] < 5, 
+  df$adjusted[(x[10] - 1)] > df$SMA200[(x[10] - 1)] & df$RSI2[(x[10] - 1)] < 5
+)
+```
+
+### How many signals?
+
+```{r}
+skim(select(df, bto, stc))
+```
+
+Of all `bto` signals, 13% of the dataset for each symbol is TRUE; around 74% are TRUE for `stc` signals.
+
+### Plot daily change where `bto` is TRUE
+
+`chg1`
+
+```{r}
+skim(df %>% filter(bto) %>% select(starts_with("chg")))
+```
+
+Data doesn't suggest this is a favorable strategy; the mean for changes on bars 3 and 5 is -1% to -1.5% meaning on average this is a losing strategy. While max gains (`p100`) can be quite lucrative (up to 5%), max losses (`p0`) are much worse (5% to 11%). Standard deviation (`sd`) is rather broad as well, ranging between 1% and 2%.
+
+`chg1`
+
+```{r}
+df %>% 
+  filter(bto) %>% 
+  ggplot() + 
+  aes(x = chg1) + 
+  geom_histogram(binwidth = 0.01)
+```
+
+skewed left; somewhat unimodal or symmetric
+
+`chg3`
+
+```{r}
+df %>% 
+  filter(bto) %>% 
+  ggplot() + 
+  aes(x = chg3) + 
+  geom_histogram(binwidth = 0.01)
+```
+
+skewed left
+
+`chg5`
+
+```{r}
+df %>% 
+  filter(bto) %>% 
+  ggplot() + 
+  aes(x = chg5) + 
+  geom_histogram(binwidth = 0.01)
+```
+
+skewed left
+
