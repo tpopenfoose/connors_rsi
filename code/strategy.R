@@ -60,7 +60,7 @@ add.indicator(
     maType    = "SMA"
   ),
   label     = "RSI2"
-  )
+)
 
 # * SMA(5) ----
 add.indicator(
@@ -71,7 +71,7 @@ add.indicator(
     n         = 5
   ),
   label     = "SMA5"
-  )
+)
 
 # * SMA(200) ----
 add.indicator(
@@ -82,7 +82,7 @@ add.indicator(
     n         = 200
   ),
   label     = "SMA200"
-  )
+)
 
 # Signals ----
 
