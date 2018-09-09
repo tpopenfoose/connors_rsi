@@ -1,22 +1,16 @@
-name: "Connors RSI(2)"
+name: "Connors RSI"
 output_dir: "../docs"
 include: [".nojekyll"]
 exclude: ["include"]
 navbar:
   title: "Connors RSI(2)"
   left:
-    - text: "Home"
-      href: index.html
-    - text: "About"
-      href: about.html
-    - text: "License"
-      href: license.html
   right:
     - icon: fa-github
       href: https://github.com/jdblischak/workflowr
 output:
   workflowr::wflow_html:
     toc: true
-    toc_float: true
+    toc_float: false
     theme: cosmo
     highlight: textmate
