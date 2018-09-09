@@ -1,5 +1,5 @@
 ---
-title: "Per-Trade Statistics"
+title: "Trade Statistics"
 site: workflowr::wflow_site
 output: workflowr::wflow_html
 ---
@@ -26,7 +26,7 @@ source(here::here("./code/functions.R"))
 load_data()
 ```
 
-```{r per-trade-statistics}
+```{r trade-statistics}
 src <- map(
   .x = sort(symbols), 
   .f = function(x) {
