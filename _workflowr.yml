@@ -7,3 +7,4 @@ seed: 20180909
 # _workflowr.yml. See ?rmarkdown::render for details.
 knit_root_dir: "analysis"
 
+sessionnfo: "devtools::session_info()"
