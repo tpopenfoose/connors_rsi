@@ -1,0 +1,64 @@
+---
+title: "Equity Curve"
+site: workflowr::wflow_site
+output: workflowr::wflow_html
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE, 
+  message = TRUE, 
+  warning = TRUE, 
+  error = TRUE
+)
+```
+
+```{r libraries, message = FALSE, warning = FALSE}
+library(blotter)
+library(ggplot2)
+library(glue)
+library(hrbrthemes)
+library(purrr)
+```
+
+```{r sources}
+source(here::here("./code/functions.R"))
+```
+
+```{r data}
+load_data()
+```
+
+```{r, eval = FALSE, include = FALSE}
+#' One way to do it
+a <- getAccount(account)
+equity <- a$summary$End.Eq
+plot(equity, main = "Consolidated Equity Curve")
+```
+
+```{r equity-curve, fig.width = 10, fig.asp = 0.75, dpi = 150}
+getAccount(account)$summary$End.Eq %>% 
+  data.frame(date = index(.)) %>% 
+  ggplot() + 
+  aes(x = date, y = End.Eq) %>% 
+  geom_line() +
+  scale_x_datetime(
+    expand = c(0.01, 0.01), 
+    date_labels = "%Y", 
+    date_breaks = "years"
+  ) + 
+  scale_y_continuous(
+    labels = scales::dollar, 
+    minor_breaks = seq(9e3, 3e4, by = 1e3)
+  ) + 
+  theme_ipsum() + 
+  theme(
+    panel.border = element_rect(color = "black", fill = NA)
+  ) + 
+  labs(
+    title = "Equity Curve", 
+    subtitle = strategy, 
+    x = "Date", 
+    y = "Ending Equity"
+  )
+```
