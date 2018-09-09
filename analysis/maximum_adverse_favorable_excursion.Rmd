@@ -1,0 +1,59 @@
+---
+title: "Maximum MAE/MFE Excursion"
+site: workflowr::wflow_site
+output: workflowr::wflow_html
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE, 
+  message = TRUE, 
+  warning = TRUE, 
+  error = FALSE
+)
+```
+
+```{r libraries, message = FALSE, warning = FALSE}
+library(blotter)
+library(purrr)
+```
+
+```{r sources}
+source(here::here("./code/functions.R"))
+```
+
+```{r data}
+load_data()
+```
+
+## Maximum Adverse Excursion
+
+```{r mae}
+src <- map(
+  .x = sort(symbols), 
+  .f = function(x) {
+    knitr::knit_expand(
+      file = here::here("./analysis/child/child_maximum_adverse_excursion.Rmd"), 
+      symbol = x
+    )
+  }
+)
+```
+
+`r knitr::knit(text = unlist(src))`
+
+## Maximum Favorable Excursion
+
+```{r mfe}
+src <- map(
+  .x = sort(symbols), 
+  .f = function(x) {
+    knitr::knit_expand(
+      file = here::here("./analysis/child/child_maximum_favorable_excursion.Rmd"), 
+      symbol = x
+    )
+  }
+)
+```
+
+`r knitr::knit(text = unlist(src))`

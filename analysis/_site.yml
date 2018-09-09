@@ -22,6 +22,8 @@ navbar:
         href: chart_positions.html
       - text: "Trade Statistics"
         href: trade_statistics.html
+      - text: "Maximum Adverse/Favorable Excursion"
+        href: maximum_adverse_favorable_excursion.html
   right:
     - icon: fa-gitlab
       href: https://gitlab.com/triceanalytics/finance/connors_rsi
