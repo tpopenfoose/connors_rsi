@@ -5,16 +5,21 @@ exclude: ["include"]
 navbar:
   title: "Connors RSI"
   left:
+    - text: "Strategy"
+      href: strategy.html
     - text: "Account Returns"
       href: account_returns.html
     - text: "Equity Curve"
       href: equity_curve.html
-    - text: "Cumulative Returns"
-      href: cumulative_returns.html
-    - text: "Chart Positions"
-      href: chart_positions.html
-    - text: "Per-Trade Statistics"
-      href: per_trade_statistics.html
+    - text: "Additional Statistics"
+      icon: fa-gear
+      menu:
+      - text: "Cumulative Returns"
+        href: cumulative_returns.html
+      - text: "Chart Positions"
+        href: chart_positions.html
+      - text: "Per-Trade Statistics"
+        href: per_trade_statistics.html
   right:
     - icon: fa-gitlab
       href: https://gitlab.com/triceanalytics/finance/connors_rsi
