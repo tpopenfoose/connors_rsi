@@ -5,6 +5,8 @@ exclude: ["include"]
 navbar:
   title: "Connors RSI"
   left:
+    - text: "Account Returns"
+      href: account_returns.html
     - text: "Equity Curve"
       href: equity_curve.html
     - text: "Cumulative Returns"
