@@ -1,0 +1,45 @@
+---
+title: "Performance Summary"
+site: workflowr::wflow_site
+output: workflowr::wflow_html
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE, 
+  message = TRUE, 
+  warning = TRUE, 
+  error = TRUE
+)
+```
+
+```{r libraries, message = FALSE, warning = FALSE}
+library(blotter)
+library(purrr)
+library(stringr)
+```
+
+```{r sources}
+source(here::here("./code/functions.R"))
+```
+
+```{r data}
+load_data()
+```
+
+```{r cumulative-returns}
+returns <- PortfReturns(Account = account)
+
+src <- map(
+  .x = sort(names(returns)), 
+  .f = function(x) {
+    knitr::knit_expand(
+      file = here::here("./analysis/child/child_cumulative_returns.Rmd"), 
+      symbol = str_match(x, pattern = "(.+).DailyEqPL")[,2], 
+      colname = x
+    )
+  }
+)
+```
+
+`r knitr::knit(text = unlist(src))`

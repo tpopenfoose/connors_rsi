@@ -7,6 +7,8 @@ navbar:
   left:
     - text: "Equity Curve"
       href: equity_curve.html
+    - text: "Cumulative Returns"
+      href: cumulative_returns.html
     - text: "Chart Positions"
       href: chart_positions.html
     - text: "Per-Trade Statistics"
