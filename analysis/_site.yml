@@ -6,7 +6,7 @@ navbar:
   title: "Connors RSI"
   left:
     - text: "Chart Positions"
-      href: chart-positions.html
+      href: chart_positions.html
   right:
     - icon: fa-gitlab
       href: https://gitlab.com/triceanalytics/finance/connors_rsi
