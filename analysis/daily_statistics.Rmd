@@ -1,0 +1,31 @@
+---
+title: "Daily Stats"
+site: workflowr::wflow_site
+output: workflowr::wflow_html
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE, 
+  message = TRUE, 
+  warning = TRUE, 
+  error = FALSE
+)
+```
+
+```{r libraries, message = FALSE, warning = FALSE}
+library(blotter)
+library(purrr)
+```
+
+```{r sources}
+source(here::here("./code/functions.R"))
+```
+
+```{r data}
+load_data()
+```
+
+```{r daily-stats}
+knitr::kable(t(dailyStats(Portfolios = portfolio)))
+```
