@@ -3,7 +3,7 @@ output_dir: "../docs"
 include: [".nojekyll"]
 exclude: ["include"]
 navbar:
-  title: "Connors RSI(2)"
+  title: "Connors RSI"
   left:
   right:
     - icon: fa-gitlab
