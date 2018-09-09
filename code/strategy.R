@@ -178,6 +178,7 @@ add.rule(
   type      = "exit"
 )
 
+# Apply Strategy ----
 applyStrategy(strategy = strategy, portfolios = portfolio)
 
 # Update ----
