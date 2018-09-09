@@ -1,0 +1,41 @@
+---
+title: "Per-Trade Statistics"
+site: workflowr::wflow_site
+output: workflowr::wflow_html
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE, 
+  message = TRUE, 
+  warning = TRUE, 
+  error = TRUE
+)
+```
+
+```{r libraries, message = FALSE, warning = FALSE}
+library(blotter)
+library(purrr)
+```
+
+```{r sources}
+source(here::here("./code/functions.R"))
+```
+
+```{r data}
+load_data()
+```
+
+```{r per-trade-statistics}
+src <- map(
+  .x = sort(symbols), 
+  .f = function(x) {
+    knitr::knit_expand(
+      file = here::here("./analysis/child/chlid_per_trade_statistics.Rmd"), 
+      title = x
+    )
+  }
+)
+```
+
+`r knitr::knit(text = unlist(src))`

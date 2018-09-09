@@ -9,6 +9,8 @@ navbar:
       href: equity_curve.html
     - text: "Chart Positions"
       href: chart_positions.html
+    - text: "Per-Trade Statistics"
+      href: per_trade_statistics.html
   right:
     - icon: fa-gitlab
       href: https://gitlab.com/triceanalytics/finance/connors_rsi
