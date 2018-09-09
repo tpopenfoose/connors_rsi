@@ -1,5 +1,19 @@
-# Connors RSI(2)
+# Connors RSI
 
-A [workflowr][] project.
+## What is Connors RSI
 
-[workflowr]: https://github.com/jdblischak/workflowr
+## Required Packages
+
+### R
+
+#### Blotter
+
+```r
+devtools::install_github("braverock/blotter", ref = "c473bd4")
+```
+
+#### Quantstrat
+
+```r
+devtools::install_github("braverock/quantstrat", ref = "849eceb")
+```
