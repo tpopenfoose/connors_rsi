@@ -6,8 +6,8 @@ navbar:
   title: "Connors RSI(2)"
   left:
   right:
-    - icon: fa-github
-      href: https://github.com/jdblischak/workflowr
+    - icon: fa-gitlab
+      href: https://gitlab.com/triceanalytics/finance/connors_rsi
 output:
   workflowr::wflow_html:
     toc: true
