@@ -11,6 +11,8 @@ navbar:
       href: account_returns.html
     - text: "Equity Curve"
       href: equity_curve.html
+    - text: "Chart Reconcile"
+      href: chart_reconcile.html
     - text: "Additional Statistics"
       icon: fa-gear
       menu:
