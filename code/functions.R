@@ -16,6 +16,7 @@ load_data <- function() {
     rm(list = ls())
   }
 
+  #' @TODO look at put.portfolio for putting portfolio object into blotter env
   load(here::here("./data/blotter.rda"), envir = .blotter)
   load(here::here("./data/env.rda"),     envir = .GlobalEnv)
 }
