@@ -1,0 +1,39 @@
+---
+title: "Per-Trade Statistics"
+site: workflowr::wflow_site
+output: workflowr::wflow_html
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE, 
+  message = TRUE, 
+  warning = TRUE, 
+  error = FALSE
+)
+```
+
+```{r libraries, message = FALSE, warning = FALSE}
+library(blotter)
+library(purrr)
+```
+
+```{r sources}
+source(here::here("./code/functions.R"))
+```
+
+```{r data}
+load_data()
+```
+
+## Per-Trade Statistics
+
+```{r per-trade-stats}
+for (symbol in symbols) {
+    pts <- perTradeStats(Portfolio = portfolio, Symbol = symbol)
+    knitr::kable(pts, booktabs = TRUE, caption = symbol)
+}
+
+knitr::kable(pts)
+```
+
