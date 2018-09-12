@@ -9,14 +9,22 @@ load_data <- function() {
   if (
     !all(
       file.exists(here::here("./data/blotter.rda")),
-      file.exists(here::here("./data/env.rda"))
+      file.exists(here::here("./data/blotter_bh.rda")),
+      file.exists(here::here("./data/env.rda")),
+      file.exists(here::here("./data/env_bh.rda"))
     )
   ) {
     source(here::here("./code/strategy.R"))
+    source(here::here("./code/strategy_buy_hold.R"))
     rm(list = ls())
   }
 
   #' @TODO look at put.portfolio for putting portfolio object into blotter env
   load(here::here("./data/blotter.rda"), envir = .blotter)
+  load(here::here("./data/blotter_bh.rda"), envir = .blotter)
   load(here::here("./data/env.rda"),     envir = .GlobalEnv)
+  load(here::here("./data/env_bh.rda"),     envir = .GlobalEnv)
+  #' Load instruments
+  loadInstruments(file_name = "instruments", dir = here::here("./data"))
+  loadInstruments(file_name = "instruments_bh", dir = here::here("./data"))
 }

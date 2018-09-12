@@ -107,3 +107,6 @@ save(list = ls(),         file = here::here("./data/env_bh.rda"))
 #' Save blotter variables which are to be loaded back into .blotter environment
 #' during analysis
 save(list = ls(.blotter), file = here::here("./data/blotter_bh.rda"), envir = .blotter)
+
+#' Save instruments
+saveInstruments(file_name = "instruments_bh", dir = here::here("./data"))
