@@ -31,7 +31,7 @@ src <- map(
   .x = sort(symbols), 
   .f = function(x) {
     knitr::knit_expand(
-      file = here::here("./analysis/child/child_per_trade_statistics.Rmd"), 
+      file = here::here("./analysis/child/child_trade_statistics.Rmd"), 
       title = x
     )
   }
