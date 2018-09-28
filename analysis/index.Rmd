@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 ```{r libraries, message = FALSE, warning = FALSE}
 library(skimr)
 library(tidyquant)
+library(tsibble)
 ```
 
 ## Strategy
