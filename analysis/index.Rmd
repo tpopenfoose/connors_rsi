@@ -92,19 +92,12 @@ df <-
 
 ```{r}
 x <- which(df$bto)
-#' Test first 10 observations; remember to lag
-all(
-  df$adjusted[(x[1] - 1)] > df$SMA200[(x[1] - 1)] & df$RSI2[(x[1] - 1)] < 5, 
-  df$adjusted[(x[2] - 1)] > df$SMA200[(x[2] - 1)] & df$RSI2[(x[2] - 1)] < 5, 
-  df$adjusted[(x[3] - 1)] > df$SMA200[(x[3] - 1)] & df$RSI2[(x[3] - 1)] < 5, 
-  df$adjusted[(x[4] - 1)] > df$SMA200[(x[4] - 1)] & df$RSI2[(x[4] - 1)] < 5, 
-  df$adjusted[(x[5] - 1)] > df$SMA200[(x[5] - 1)] & df$RSI2[(x[5] - 1)] < 5, 
-  df$adjusted[(x[6] - 1)] > df$SMA200[(x[6] - 1)] & df$RSI2[(x[6] - 1)] < 5, 
-  df$adjusted[(x[7] - 1)] > df$SMA200[(x[7] - 1)] & df$RSI2[(x[7] - 1)] < 5, 
-  df$adjusted[(x[8] - 1)] > df$SMA200[(x[8] - 1)] & df$RSI2[(x[8] - 1)] < 5, 
-  df$adjusted[(x[9] - 1)] > df$SMA200[(x[9] - 1)] & df$RSI2[(x[9] - 1)] < 5, 
-  df$adjusted[(x[10] - 1)] > df$SMA200[(x[10] - 1)] & df$RSI2[(x[10] - 1)] < 5
-)
+#' Validate signals meat trade requirements
+x %>% 
+  map_lgl(
+    .f = ~df$adjusted[(.x - 1)] > df$SMA200[(.x - 1)] & df$RSI2[(.x - 1)] < 5
+  ) %>% 
+  all()
 ```
 
 ### How many signals?
