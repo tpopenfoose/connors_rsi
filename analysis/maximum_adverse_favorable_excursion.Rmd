@@ -28,6 +28,8 @@ load_data()
 
 ## Maximum Adverse Excursion
 
+Largest loss in an open trade
+
 ```{r mae}
 src <- map(
   .x = sort(symbols), 
@@ -43,6 +45,8 @@ src <- map(
 `r knitr::knit(text = unlist(src))`
 
 ## Maximum Favorable Excursion
+
+Peak profit in an open trade
 
 ```{r mfe}
 src <- map(
