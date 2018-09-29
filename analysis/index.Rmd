@@ -21,6 +21,12 @@ library(tidyquant)
 library(tsibble)
 ```
 
+```{r}
+symbols <- c("IWM", "QQQ", "TLT", "SPY")
+from    <- "2005-01-01"
+to      <- "2015-01-01"
+```
+
 ## Strategy
 
 $$ \text{BTO} = \text{Adjusted} > \text{SMA (200) } \& \text{ RSI (2)} < 5 $$
