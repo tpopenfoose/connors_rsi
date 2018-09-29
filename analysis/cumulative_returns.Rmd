@@ -1,5 +1,5 @@
 ---
-title: "Performance Summary"
+title: "Cumulative Returns"
 site: workflowr::wflow_site
 output: workflowr::wflow_html
 ---

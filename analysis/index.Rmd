@@ -1,5 +1,5 @@
 ---
-title: "Exploratory"
+title: "Exploratory Analysis"
 site: workflowr::wflow_site
 output: workflowr::wflow_html
 editor_options: 
@@ -11,13 +11,24 @@ knitr::opts_chunk$set(
   echo = TRUE, 
   message = TRUE, 
   warning = TRUE, 
-  error = TRUE
+  error = FALSE, 
+  fig.width = 10, 
+  dpi = 150
 )
 ```
 
 ```{r libraries, message = FALSE, warning = FALSE}
+library(hrbrthemes)
 library(skimr)
+library(tidyfinance)
 library(tidyquant)
+library(tsibble)
+```
+
+```{r}
+symbols <- c("IWM", "QQQ", "TLT", "SPY")
+from    <- "2005-01-01"
+to      <- "2015-01-01"
 ```
 
 ## Strategy
@@ -29,7 +40,7 @@ $$ \text{STC} = \text{Adjusted} < \text{SMA (200) } \vee \text{ Close} > \text{S
 ### Data
 
 ```{r get-symbols}
-df <- tq_get(c("IWM", "QQQ", "SPY"), from = "2005-01-01", to = "2015-01-01")
+df <- tq_get(symbols, from = from, to = to)
 ```
 
 ### Indicators
@@ -57,11 +68,6 @@ df <-
     n          = 2L, 
     maType     = SMA, 
     col_rename = "RSI2"
-  ) %>% 
-  mutate(
-    chg1 = (adjusted - lag(adjusted, n = 1L))/adjusted, 
-    chg3 = (adjusted - lag(adjusted, n = 3L))/adjusted, 
-    chg5 = (adjusted - lag(adjusted, n = 5L))/adjusted, 
   )
 ```
 
@@ -74,14 +80,17 @@ df <-
     rsi2_lt_5    = if_else(RSI2 < 5,         TRUE, FALSE), 
     cl_gte_sma5  = if_else(adjusted >= SMA5,  TRUE, FALSE), 
     cl_lt_sma200 = if_else(adjusted < SMA200, TRUE, FALSE), 
+    #' Given signal, BTO on market close
     bto          = lag(rsi2_lt_5, n = 1L) & !lag(cl_lt_sma200, n = 1L),
+    #' Given signal, STC on market close
     stc          = lag(cl_lt_sma200, n = 1L) | lag(cl_gte_sma5, n = 1L),
+    #' If position is held, then TRUE. The lag is so that buy/hold positions are 
+    #' not only for one day 
     position     = case_when(
-      bto  ~ TRUE, 
-      stc  ~ FALSE, 
-      TRUE ~ NA
-    ), 
-    position     = na.locf(position, na.rm = FALSE)
+      bto == TRUE  ~ TRUE,
+      stc == TRUE & lag(bto, n = 1L) == TRUE  ~ TRUE,
+      TRUE ~ FALSE
+    )
   )
 ```
 
@@ -89,74 +98,110 @@ df <-
 
 ### Trade validation
 
-```{r}
+```{r trade-validation}
 x <- which(df$bto)
-#' Test first 10 observations; remember to lag
-all(
-  df$adjusted[(x[1] - 1)] > df$SMA200[(x[1] - 1)] & df$RSI2[(x[1] - 1)] < 5, 
-  df$adjusted[(x[2] - 1)] > df$SMA200[(x[2] - 1)] & df$RSI2[(x[2] - 1)] < 5, 
-  df$adjusted[(x[3] - 1)] > df$SMA200[(x[3] - 1)] & df$RSI2[(x[3] - 1)] < 5, 
-  df$adjusted[(x[4] - 1)] > df$SMA200[(x[4] - 1)] & df$RSI2[(x[4] - 1)] < 5, 
-  df$adjusted[(x[5] - 1)] > df$SMA200[(x[5] - 1)] & df$RSI2[(x[5] - 1)] < 5, 
-  df$adjusted[(x[6] - 1)] > df$SMA200[(x[6] - 1)] & df$RSI2[(x[6] - 1)] < 5, 
-  df$adjusted[(x[7] - 1)] > df$SMA200[(x[7] - 1)] & df$RSI2[(x[7] - 1)] < 5, 
-  df$adjusted[(x[8] - 1)] > df$SMA200[(x[8] - 1)] & df$RSI2[(x[8] - 1)] < 5, 
-  df$adjusted[(x[9] - 1)] > df$SMA200[(x[9] - 1)] & df$RSI2[(x[9] - 1)] < 5, 
-  df$adjusted[(x[10] - 1)] > df$SMA200[(x[10] - 1)] & df$RSI2[(x[10] - 1)] < 5
-)
+#' Validate signals meat trade requirements
+x %>% 
+  map_lgl(
+    .f = ~df$adjusted[(.x - 1)] > df$SMA200[(.x - 1)] & df$RSI2[(.x - 1)] < 5
+  ) %>% 
+  all()
 ```
 
-### How many signals?
+### Cumulative Returns
 
-```{r}
-skim(select(df, bto, stc))
+```{r returns}
+df_returns <- 
+  df %>% 
+  group_by(symbol) %>% 
+  as_tbl_time(
+    key = id(symbol), 
+    index = date
+  ) %>% 
+  calculate_return(adjusted)
 ```
 
-Of all `bto` signals, 13% of the dataset for each symbol is TRUE; around 74% are TRUE for `stc` signals.
-
-### Plot daily change where `bto` is TRUE
-
-`chg1`
-
-```{r}
-skim(df %>% filter(bto) %>% select(starts_with("chg")))
-```
-
-Data doesn't suggest this is a favorable strategy; the mean for changes on bars 3 and 5 is -1% to -1.5% meaning on average this is a losing strategy. While max gains (`p100`) can be quite lucrative (up to 5%), max losses (`p0`) are much worse (5% to 11%). Standard deviation (`sd`) is rather broad as well, ranging between 1% and 2%.
-
-`chg1`
-
-```{r}
-df %>% 
-  filter(bto) %>% 
+```{r cumulative-return}
+df_returns %>% 
+  filter(position == TRUE) %>% 
+  mutate(
+    cum_return = cumulative_return(adjusted_return)
+  ) %>% 
   ggplot() + 
-  aes(x = chg1) + 
-  geom_histogram(binwidth = 0.01)
+  aes(x = date, y = cum_return, color = symbol) + 
+  geom_line() + 
+  scale_x_date(
+    date_labels = "%Y", 
+    date_breaks = "years", 
+    date_minor_breaks = "years"
+  ) + 
+  scale_y_continuous(labels = scales::percent) + 
+  guides(color = guide_legend(title = "Symbol")) + 
+  theme_ipsum() + 
+  theme(legend.position = "bottom") + 
+  labs(
+    title = "Cumulative Returns", 
+    subtitle = "Cumulative returns for positions held.", 
+    x = "Date", 
+    y = "Cumulative Return"
+  )
 ```
 
-skewed left; somewhat unimodal or symmetric
+### Drawdown
 
-`chg3`
-
-```{r}
-df %>% 
-  filter(bto) %>% 
+```{r drawdown}
+df_returns %>% 
+  filter(position == TRUE) %>% 
+  mutate(drawdown = drawdown(adjusted_return)) %>% 
   ggplot() + 
-  aes(x = chg3) + 
-  geom_histogram(binwidth = 0.01)
+  aes(x = date, y = drawdown, color = symbol) + 
+  geom_line() + 
+  scale_x_date(
+    date_labels = "%Y", 
+    date_breaks = "years", 
+    date_minor_breaks = "years"
+  ) + 
+  scale_y_continuous(labels = scales::percent) + 
+  guides(color = guide_legend(title = "Symbol")) + 
+  theme_ipsum() + 
+  theme(
+    legend.position = "bottom"
+  ) + 
+  labs(
+    title = "Drawdown", 
+    subtitle = "Projected drawdown for positions held.", 
+    x = "Date", 
+    y = "Drawdown"
+  )
 ```
 
-skewed left
+### Projected Equity Curve
 
-`chg5`
-
-```{r}
-df %>% 
-  filter(bto) %>% 
+```{r equity-curve}
+df_returns %>% 
+  filter(position == TRUE) %>% 
+  select(symbol, date, adjusted_return) %>% 
+  mutate(
+    cum_return = cumulative_return(adjusted_return)
+  ) %>% 
+  group_by(date) %>% 
+  summarise(daily_return = sum(cum_return, na.rm = TRUE)) %>% 
+  complete(date = seq.Date(as.Date(from), as.Date(to), by = "day")) %>% 
+  replace_na(list("daily_return" = 0)) %>% 
+  mutate(cumsum = cumsum(daily_return)) %>% 
   ggplot() + 
-  aes(x = chg5) + 
-  geom_histogram(binwidth = 0.01)
+  aes(x = date, y = cumsum) + 
+  geom_line() + 
+  scale_x_date(
+    date_labels = "%Y", 
+    date_breaks = "years", 
+    date_minor_breaks = "years"
+  ) + 
+  scale_y_continuous(labels = function(x) paste0(x, "%")) + 
+  theme_ipsum() + 
+  labs(
+    title = "Projected Equity Curve", 
+    x = "Date", 
+    y = "Cumulative Return"
+  )
 ```
-
-skewed left
-

@@ -8,7 +8,7 @@ init_date <- "2004-12-31"
 start_date <- "2005-01-01"
 end_date <- "2014-12-31"
 init_equity <- 1e4
-symbols <- c("IWM", "QQQ", "SPY")
+symbols <- c("IWM", "QQQ", "TLT", "SPY")
 
 # Settings ----
 Sys.setenv(TZ = "UTC")
