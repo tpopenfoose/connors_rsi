@@ -20,7 +20,8 @@ library(stringr)
 ```
 
 ```{r sources}
-source(here::here("./code/functions.R"))
+source(here::here("./code/02_settings.R"))
+source(here::here("./code/03_functions.R"))
 ```
 
 ```{r data}

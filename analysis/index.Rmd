@@ -25,10 +25,8 @@ library(tidyquant)
 library(tsibble)
 ```
 
-```{r}
-symbols <- c("IWM", "QQQ", "TLT", "SPY")
-from    <- "2005-01-01"
-to      <- "2015-01-01"
+```{r settings}
+source(here::here("./code/02_settings.R"))
 ```
 
 ## Strategy
@@ -40,7 +38,7 @@ $$ \text{STC} = \text{Adjusted} < \text{SMA (200) } \vee \text{ Close} > \text{S
 ### Data
 
 ```{r get-symbols}
-df <- tq_get(symbols, from = from, to = to)
+df <- tq_get(symbols, from = start_date, to = end_date)
 ```
 
 ### Indicators
@@ -186,7 +184,7 @@ df_returns %>%
   ) %>% 
   group_by(date) %>% 
   summarise(daily_return = sum(cum_return, na.rm = TRUE)) %>% 
-  complete(date = seq.Date(as.Date(from), as.Date(to), by = "day")) %>% 
+  complete(date = seq.Date(as.Date(start_date), as.Date(end_date), by = "day")) %>% 
   replace_na(list("daily_return" = 0)) %>% 
   mutate(cumsum = cumsum(daily_return)) %>% 
   ggplot() + 

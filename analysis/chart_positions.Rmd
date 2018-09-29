@@ -15,15 +15,17 @@ knitr::opts_chunk$set(
 
 ```{r libraries, message = FALSE, warning = FALSE}
 library(blotter)
+library(magrittr)
 library(purrr)
 ```
 
 ```{r sources}
-source(here::here("./code/functions.R"))
+source(here::here("./code/02_settings.R"))
+source(here::here("./code/03_functions.R"))
 ```
 
 ```{r data}
-load_data()
+load_data(symbols)
 ```
 
 ```{r chart-posn}
