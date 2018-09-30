@@ -25,7 +25,7 @@ source(here::here("./code/03_functions.R"))
 ```
 
 ```{r data}
-load_data(symbols)
+load_data()
 ```
 
 ```{r chart-posn}

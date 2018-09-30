@@ -4,6 +4,11 @@ library(TTR)
 
 source(here::here("./code/02_settings.R"))
 
+# Settings ----
+Sys.setenv(TZ = "UTC")
+
+currency("USD")
+
 getSymbols(
   Symbols = symbols,
   src = "yahoo",
@@ -16,9 +21,10 @@ getSymbols(
 stock(symbols, currency = "USD", multiplier = 1)
 
 rm.strat(portfolio)
-rm.strat(account)
+rm.strat(theo_portfolio)
 
 initPortf(name = portfolio, symbols = symbols, initDate = init_date)
+initPortf(name = theo_portfolio, symbols = symbols, initDate = init_date)
 
 initAcct(
   name = account,
@@ -27,9 +33,18 @@ initAcct(
   initEq = init_equity
 )
 
+initAcct(
+  name = theo_account,
+  portfolios = theo_portfolio,
+  initDate = init_date,
+  initEq = init_equity
+)
+
 initOrders(portfolio = portfolio, symbols = symbols, initDate = init_date)
+initOrders(portfolio = theo_portfolio, symbols = symbols, initDate = init_date)
 
 strategy(portfolio, store = TRUE)
+strategy(theo_portfolio, store = TRUE)
 
 strat <- getStrategy(portfolio)
 
@@ -166,15 +181,55 @@ add.rule(
 # Apply Strategy ----
 applyStrategy(strategy = strategy, portfolios = portfolio)
 
+#' Add buy and hold transactions
+#' buy
+purrr::walk(
+  .x = symbols,
+  .f = ~addTxn(
+    Portfolio = theo_portfolio,
+    Symbol = .x,
+    TxnDate = strftime(first(time(get(x))), format = "%Y-%m-%d"),
+    TxnQty = 100,
+    TxnPrice = first(Ad(get(.x)))
+  )
+)
+
+#' sell
+purrr::walk(
+  .x = symbols,
+  .f = ~addTxn(
+    Portfolio = theo_portfolio,
+    Symbol = .x,
+    TxnDate = strftime(last(time(get(x))), format = "%Y-%m-%d"),
+    TxnQty = -100,
+    TxnPrice = last(Ad(get(.x)))
+  )
+)
+
 # Update ----
-updatePortf(portfolio)
-updateAcct(account)
-updateEndEq(account)
+purrr::walk(.x = c(portfolio, theo_portfolio), .f = updatePortf)
+purrr::walk(.x = c(account, theo_account), .f = updateAcct)
+purrr::walk(.x = c(account, theo_account), .f = updateEndEq)
 
 ## Save
+
+#' Save Instruments from FinancialInstruments environment
 saveInstruments(file_name = "instruments.RData", dir = here::here("./data"))
+
+#' Save strategy portfolio
 p <- getPortfolio(Portfolio = portfolio)
 save(p, file = here::here("./data/portfolio.RData"))
+
+#' Save theoretical portfolio
+pbh <- getPortfolio(Portfolio = theo_portfolio)
+save(pbh, file = here::here("./data/theo_portfolio.RData"))
+
+#' Save account
 a <- getAccount(Account = account)
 save(a, file = here::here("./data/account.RData"))
-walk(symbols, ~save(list = .x, file = glue::glue("./data/{.x}.RData")))
+
+abh <- getAccount(Account = account)
+save(abh, file = here::here("./data/theo_account.RData"))
+
+#' Save symbol datasets
+purrr::walk(symbols, ~save(list = .x, file = glue::glue("./data/{.x}.RData")))
