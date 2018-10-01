@@ -27,13 +27,21 @@ source(here::here("./code/03_functions.R"))
 load_data()
 ```
 
+## Account Returns {.tabset}
+
+### Strategy Portfolio
+
 ```{r account-returns-portfolio, fig.width = 10, fig.asp = 0.75, dpi = 150}
 plot(AcctReturns(Account = account, Portfolios = portfolio))
 ```
 
+### Theoretical Portfolio
+
 ```{r account-returns-theo-portfolio, fig.width = 10, fig.asp = 0.75, dpi = 150}
 plot(AcctReturns(Account = account, Portfolios = theo_portfolio))
 ```
+
+### Benchmark Portfolio
 
 ```{r account-returns-benchmark-portfolio, fig.width = 10, fig.asp = 0.75, dpi = 150}
 plot(AcctReturns(Account = account, Portfolios = benchmark_portfolio))
