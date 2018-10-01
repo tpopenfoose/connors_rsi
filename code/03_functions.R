@@ -8,43 +8,27 @@ load_data <- function() {
   #' If the files do not exist, run the strategy (which saves the objects), clear
   #' out the environment then load the saved data files.
 
-  symbols <- c(get("symbols"), get("clean_benchmark"))
-
-  rqd_files <- c(
-    "account", "portfolio", "theo_portfolio", "instruments", symbols,
-    clean_benchmark
-  )
-
-  rqd_files_exist <- purrr::map_lgl(
-    .x = rqd_files,
-    .f = ~file.exists(here::here(glue::glue("./data/{.x}.RData")))
-  )
+  rqd_files_exist <-
+    purrr::map_lgl(
+      .x = c("instruments", "results"),
+      .f = ~file.exists(here::here(glue::glue("./data/{.x}.RData")))
+    )
 
   if (!all(rqd_files_exist)) {
     source(here::here("./code/04_strategy.R"))
-    rm(list = ls())
   }
 
-  load(here::here("./data/account.RData"))
+  load(here::here("./data/results.RData"), envir = .GlobalEnv)
   blotter::put.account(account, a)
-
-  load(here::here("./data/portfolio.RData"))
+  blotter::put.account(bh_account, abh)
+  blotter::put.account(bm_account, abm)
   blotter::put.portfolio(portfolio, p)
-
-  load(here::here("./data/theo_portfolio.RData"))
-  blotter::put.portfolio(theo_portfolio, pbh)
-
-  load(here::here("./data/benchmark_portfolio.RData"))
-  blotter::put.portfolio(benchmark_portfolio, pbm)
+  blotter::put.portfolio(bh_portfolio, pbh)
+  blotter::put.portfolio(bm_portfolio, pbm)
 
   FinancialInstrument::loadInstruments(
     file_name = "instruments.RData",
     dir = here::here("./data")
-  )
-
-  purrr::walk(
-    .x = symbols,
-    .f = ~load(here::here(glue::glue("./data/{.x}.RData")), envir = .GlobalEnv)
   )
 
 }

@@ -9,16 +9,18 @@ init_equity <- 1e6
 
 symbols <- c("IWM", "QQQ", "SPY", "TLT")
 
-#' Benchmark symbol to compare performance of strategy
-benchmark <- "SPY"
-#' Clean benchmark symbol of special characters
-clean_benchmark <- "SPY"
-benchmark_portfolio <- "benchmark"
-
-#' Theoretical portfolio to compare buy and hold to strategy
-theo_portfolio <- "theo_portfolio"
-
+#' strategy settings
 strategy <- "connors_rsi"
-
 portfolio <- strategy
 account <- strategy
+
+#' Buy/Hold strategy settings.
+#' Buy/hold same symbols for test period.
+bh_portfolio <- "bh_portfolio"
+bh_account <- bh_portfolio
+
+#' Benchmark strategy
+#' Buy/Hold of benchmark symbol for testing period.
+benchmark <- "SPY" #' As of now can't figure out how to do ^GSPC (with the caret)
+bm_portfolio <- "benchmark"
+bm_account <- bm_portfolio
