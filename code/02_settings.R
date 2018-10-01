@@ -5,22 +5,20 @@ start_date <- "2005-01-01"
 
 end_date <- "2014-12-31"
 
-init_equity <- 1e4
+init_equity <- 1e6
 
 symbols <- c("IWM", "QQQ", "SPY", "TLT")
 
-benchmark <- "^GSPC"
+#' Benchmark symbol to compare performance of strategy
+benchmark <- "SPY"
+#' Clean benchmark symbol of special characters
+clean_benchmark <- "SPY"
+benchmark_portfolio <- "benchmark"
 
-#' `theo_symbol` is the symbol used to create a buy and hold strategy from the
-#' date of the first trade too `end_date`. This is used in places such as
-#' `blotter::chart.Reconcile` to analyse the strategy versus a simple buy and
-#' hold strategy.
-
-#' Assign theoretical account the same name as theoretical portfolio
-theo_account <- "buy_hold"
-
-theo_portfolio <- theo_account
+#' Theoretical portfolio to compare buy and hold to strategy
+theo_portfolio <- "theo_portfolio"
 
 strategy <- "connors_rsi"
+
 portfolio <- strategy
 account <- strategy

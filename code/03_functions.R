@@ -7,9 +7,12 @@ load_data <- function() {
   #' Check for the portfolio, account and env objects saved from the strategy run.
   #' If the files do not exist, run the strategy (which saves the objects), clear
   #' out the environment then load the saved data files.
+
+  symbols <- c(get("symbols"), get("clean_benchmark"))
+
   rqd_files <- c(
-    "account", "theo_account", "portfolio", "theo_portfolio", "instruments",
-    symbols
+    "account", "portfolio", "theo_portfolio", "instruments", symbols,
+    clean_benchmark
   )
 
   rqd_files_exist <- purrr::map_lgl(
@@ -22,19 +25,17 @@ load_data <- function() {
     rm(list = ls())
   }
 
-  symbols <- get("symbols")
-
   load(here::here("./data/account.RData"))
   blotter::put.account(account, a)
-
-  load(here::here("./data/theo_account.RData"))
-  blotter::put.account(account, abh)
 
   load(here::here("./data/portfolio.RData"))
   blotter::put.portfolio(portfolio, p)
 
   load(here::here("./data/theo_portfolio.RData"))
   blotter::put.portfolio(theo_portfolio, pbh)
+
+  load(here::here("./data/benchmark_portfolio.RData"))
+  blotter::put.portfolio(benchmark_portfolio, pbm)
 
   FinancialInstrument::loadInstruments(
     file_name = "instruments.RData",

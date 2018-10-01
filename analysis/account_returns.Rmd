@@ -27,6 +27,14 @@ source(here::here("./code/03_functions.R"))
 load_data()
 ```
 
-```{r account-returns, fig.width = 10, fig.asp = 0.75, dpi = 150}
-plot(AcctReturns(Account = account))
+```{r account-returns-portfolio, fig.width = 10, fig.asp = 0.75, dpi = 150}
+plot(AcctReturns(Account = account, Portfolios = portfolio))
+```
+
+```{r account-returns-theo-portfolio, fig.width = 10, fig.asp = 0.75, dpi = 150}
+plot(AcctReturns(Account = account, Portfolios = theo_portfolio))
+```
+
+```{r account-returns-benchmark-portfolio, fig.width = 10, fig.asp = 0.75, dpi = 150}
+plot(AcctReturns(Account = account, Portfolios = benchmark_portfolio))
 ```

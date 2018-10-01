@@ -10,7 +10,7 @@ Sys.setenv(TZ = "UTC")
 currency("USD")
 
 getSymbols(
-  Symbols = symbols,
+  Symbols = c(symbols, benchmark),
   src = "yahoo",
   index.class = "POSIXct",
   from = start_date,
@@ -18,35 +18,30 @@ getSymbols(
   adjust = TRUE
 )
 
-stock(symbols, currency = "USD", multiplier = 1)
+stock(c(symbols, benchmark), currency = "USD", multiplier = 1)
 
 rm.strat(portfolio)
 rm.strat(theo_portfolio)
+rm.strat(benchmark_portfolio)
 
 initPortf(name = portfolio, symbols = symbols, initDate = init_date)
 initPortf(name = theo_portfolio, symbols = symbols, initDate = init_date)
+initPortf(name = benchmark_portfolio, symbols = symbols, initDate = init_date)
 
 initAcct(
   name = account,
-  portfolios = portfolio,
-  initDate = init_date,
-  initEq = init_equity
-)
-
-initAcct(
-  name = theo_account,
-  portfolios = theo_portfolio,
+  portfolios = c(portfolio, theo_portfolio, benchmark_portfolio),
   initDate = init_date,
   initEq = init_equity
 )
 
 initOrders(portfolio = portfolio, symbols = symbols, initDate = init_date)
 initOrders(portfolio = theo_portfolio, symbols = symbols, initDate = init_date)
+initOrders(portfolio = benchmark_portfolio, symbols = symbols, initDate = init_date)
 
 strategy(portfolio, store = TRUE)
 strategy(theo_portfolio, store = TRUE)
-
-strat <- getStrategy(portfolio)
+strategy(benchmark_portfolio, store = TRUE)
 
 # Indicators ----
 
@@ -188,7 +183,7 @@ purrr::walk(
   .f = ~addTxn(
     Portfolio = theo_portfolio,
     Symbol = .x,
-    TxnDate = strftime(first(time(get(x))), format = "%Y-%m-%d"),
+    TxnDate = strftime(first(time(get(.x))), format = "%Y-%m-%d"),
     TxnQty = 100,
     TxnPrice = first(Ad(get(.x)))
   )
@@ -200,18 +195,44 @@ purrr::walk(
   .f = ~addTxn(
     Portfolio = theo_portfolio,
     Symbol = .x,
-    TxnDate = strftime(last(time(get(x))), format = "%Y-%m-%d"),
+    TxnDate = strftime(last(time(get(.x))), format = "%Y-%m-%d"),
     TxnQty = -100,
     TxnPrice = last(Ad(get(.x)))
   )
 )
 
-# Update ----
-purrr::walk(.x = c(portfolio, theo_portfolio), .f = updatePortf)
-purrr::walk(.x = c(account, theo_account), .f = updateAcct)
-purrr::walk(.x = c(account, theo_account), .f = updateEndEq)
+#' Add benchmark transaction
+#' buy
+addTxn(
+  Portfolio = benchmark_portfolio,
+  Symbol = benchmark,
+  TxnDate = strftime(first(time(get(clean_benchmark))), format = "%Y-%m-%d"),
+  TxnQty = 100,
+  TxnPrice = first(Ad(get(clean_benchmark)))
+)
 
-## Save
+#' sell
+addTxn(
+  Portfolio = benchmark_portfolio,
+  Symbol = benchmark,
+  TxnDate = strftime(last(time(get(clean_benchmark))), format = "%Y-%m-%d"),
+  TxnQty = -100,
+  TxnPrice = last(Ad(get(clean_benchmark)))
+)
+
+# Update ----
+purrr::walk(
+  .x = c(portfolio, theo_portfolio, benchmark_portfolio),
+  .f = updatePortf
+)
+
+updateAcct(account)
+updateEndEq(account)
+
+## Save ----
+#' Save account
+a <- getAccount(Account = account)
+save(a, file = here::here("./data/account.RData"))
 
 #' Save Instruments from FinancialInstruments environment
 saveInstruments(file_name = "instruments.RData", dir = here::here("./data"))
@@ -224,12 +245,13 @@ save(p, file = here::here("./data/portfolio.RData"))
 pbh <- getPortfolio(Portfolio = theo_portfolio)
 save(pbh, file = here::here("./data/theo_portfolio.RData"))
 
-#' Save account
-a <- getAccount(Account = account)
-save(a, file = here::here("./data/account.RData"))
-
-abh <- getAccount(Account = account)
-save(abh, file = here::here("./data/theo_account.RData"))
+#' Save theoretical portfolio
+pbm <- getPortfolio(Portfolio = benchmark_portfolio)
+save(pbm, file = here::here("./data/benchmark_portfolio.RData"))
 
 #' Save symbol datasets
-purrr::walk(symbols, ~save(list = .x, file = glue::glue("./data/{.x}.RData")))
+purrr::walk(
+  #' Replace any special symbols (such as carets) with nothing
+  .x = c(symbols, clean_benchmark),
+  .f = ~save(list = .x, file = glue::glue("./data/{.x}.RData"))
+)
