@@ -6,16 +6,16 @@ install.packages(
 )
 
 #' Blotter
-devtools::install_github("braverock/blotter@c473bd4") #' v0.14.2 (May 12)
+devtools::install_github("braverock/blotter@bc75cf5") #' v0.14.2 (May 12)
 
 #' Quantstrat
-devtools::install_github("braverock/quantstrat@849eceb") #' v0.14.6 (Jun 27)
+devtools::install_github("braverock/quantstrat@b301b35") #' v0.14.6 (Jun 27)
 
 #' hrbrthemes (not required but I like it and it's in use)
-devtools::install_github("hrbrmstr/hrbrthemes@v0.5.0") #' Apr 29
+devtools::install_github("hrbrmstr/hrbrthemes@v0.6.0") #' Apr 29
 
 #' workflowr
-devtools::install_github('jdblischak/workflowr@v1.1.1')
+devtools::install_github('jdblischak/workflowr@v1.2.0')
 
 #' tidyfinance
 devtools::install_github("DavisVaughan/tidyfinance@56917ea")
