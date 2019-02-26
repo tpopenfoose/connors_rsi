@@ -37,7 +37,40 @@ equity <- a$summary$End.Eq
 plot(equity, main = "Consolidated Equity Curve")
 ```
 
+{.tabset}
+
+### Portfolio
+
 ```{r equity-curve, fig.width = 10, fig.asp = 0.75, dpi = 150}
+getAccount(account)$summary$End.Eq %>% 
+  data.frame(date = index(.)) %>% 
+  ggplot() + 
+  aes(x = date, y = End.Eq) %>% 
+  geom_line() +
+  scale_x_datetime(
+    expand = c(0.01, 0.01), 
+    date_labels = "%Y", 
+    date_breaks = "years"
+  ) + 
+  scale_y_continuous(
+    labels = scales::dollar, 
+    minor_breaks = seq(9e3, 3e4, by = 1e3)
+  ) + 
+  theme_ipsum() + 
+  theme(
+    panel.border = element_rect(color = "black", fill = NA)
+  ) + 
+  labs(
+    title = "Equity Curve", 
+    subtitle = strategy, 
+    x = "Date", 
+    y = "Ending Equity"
+  )
+```
+
+### Theo Portfolio
+
+```{r equity-curve-theo-portfolio, fig.width = 10, fig.asp = 0.75, dpi = 150}
 getAccount(account)$summary$End.Eq %>% 
   data.frame(date = index(.)) %>% 
   ggplot() + 
