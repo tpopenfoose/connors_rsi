@@ -27,8 +27,8 @@ navbar:
       - text: "Per Trade Statistics"
         href: per_trade_statistics.html
   right:
-    - icon: fa-gitlab
-      href: https://gitlab.com/triceanalytics/finance/connors_rsi
+    - icon: fa-gigthub
+      href: https://github.com/timtrice/connors_rsi
 output:
   workflowr::wflow_html:
     toc: true
