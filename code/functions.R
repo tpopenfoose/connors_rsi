@@ -11,14 +11,14 @@ load_data <- function() {
   rqd_files_exist <-
     purrr::map_lgl(
       .x = c("instruments", "results"),
-      .f = ~file.exists(here::here(glue::glue("./data/{.x}.RData")))
+      .f = ~file.exists(here::here(glue::glue("./output/{.x}.RData")))
     )
 
   if (!all(rqd_files_exist)) {
     source(here::here("./code/04_strategy.R"))
   }
 
-  load(here::here("./data/results.RData"), envir = .GlobalEnv)
+  load(here::here("./output/results.RData"), envir = .GlobalEnv)
   blotter::put.account(account, a)
   blotter::put.account(bh_account, abh)
   blotter::put.account(bm_account, abm)
@@ -28,7 +28,7 @@ load_data <- function() {
 
   FinancialInstrument::loadInstruments(
     file_name = "instruments.RData",
-    dir = here::here("./data")
+    dir = here::here("./output")
   )
 
 }
