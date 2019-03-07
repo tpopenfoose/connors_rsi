@@ -20,8 +20,8 @@ library(purrr)
 ```
 
 ```{r sources}
-source(here::here("./code/02_settings.R"))
-source(here::here("./code/03_functions.R"))
+source(here::here("./code/settings.R"))
+source(here::here("./code/functions.R"))
 ```
 
 ```{r data}
