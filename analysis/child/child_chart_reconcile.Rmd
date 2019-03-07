@@ -3,7 +3,7 @@
 
 ```{r chart-reconcile-{{symbol}}, fig.width = 10, fig.asp = 0.75, dpi = 150}
 chart.Reconcile(
-  theoPort = theo_portfolio, 
+  theoPort = bh_portfolio, 
   actualPort = portfolio, 
   Symbol = "{{symbol}}"
 )

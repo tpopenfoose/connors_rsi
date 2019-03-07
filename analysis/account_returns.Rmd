@@ -39,11 +39,11 @@ plot(AcctReturns(Account = account, Portfolios = portfolio))
 ### Theoretical Portfolio
 
 ```{r account-returns-theo-portfolio, fig.width = 10, fig.asp = 0.75, dpi = 150}
-plot(AcctReturns(Account = account, Portfolios = theo_portfolio))
+plot(AcctReturns(Account = bh_account, Portfolios = bh_portfolio))
 ```
 
 ### Benchmark Portfolio
 
 ```{r account-returns-benchmark-portfolio, fig.width = 10, fig.asp = 0.75, dpi = 150}
-plot(AcctReturns(Account = account, Portfolios = benchmark_portfolio))
+plot(AcctReturns(Account = bm_account, Portfolios = bm_portfolio))
 ```
