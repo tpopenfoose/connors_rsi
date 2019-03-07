@@ -13,7 +13,7 @@
 
 <meta name="date" content="2019-03-07" />
 
-<title>Equity Curve</title>
+<title>Exploratory</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -347,7 +347,7 @@ div.section {
 
 
 
-<h1 class="title toc-ignore">Equity Curve</h1>
+<h1 class="title toc-ignore">Exploratory</h1>
 <h4 class="author"><em>Tim Trice</em></h4>
 <h4 class="date"><em>2019-03-07</em></h4>
 
@@ -355,10 +355,14 @@ div.section {
 
 <div id="TOC">
 <ul>
-<li><a href="#section"></a><ul>
-<li><a href="#portfolio">Portfolio</a></li>
-<li><a href="#theo-portfolio">Theo Portfolio</a></li>
-<li><a href="#benchmark-portfolio">Benchmark Portfolio</a></li>
+<li><a href="#data">Data</a></li>
+<li><a href="#indicators">Indicators</a></li>
+<li><a href="#signals">Signals</a></li>
+<li><a href="#analysis">Analysis</a><ul>
+<li><a href="#trade-validation">Trade validation</a></li>
+<li><a href="#cumulative-returns">Cumulative Returns</a></li>
+<li><a href="#drawdown">Drawdown</a></li>
+<li><a href="#projected-equity-curve">Projected Equity Curve</a></li>
 </ul></li>
 </ul>
 </div>
@@ -526,7 +530,7 @@ Message
 Rmd
 </td>
 <td>
-<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/0c3db0a50bc39466161e84e5f3fd3e8079d72e27/analysis/equity_curve.Rmd" target="_blank">0c3db0a</a>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/8c93093be3f7a97696ffd109e0343e2149e74a85/analysis/exploratory.Rmd" target="_blank">8c93093</a>
 </td>
 <td>
 Tim Trice
@@ -535,177 +539,7 @@ Tim Trice
 2019-03-07
 </td>
 <td>
-Do not echo source
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/c2f15dc3f81aa2325bc210518269c4a2b7ed2ea2/analysis/equity_curve.Rmd" target="_blank">c2f15dc</a>
-</td>
-<td>
-Tim Trice
-</td>
-<td>
-2019-03-07
-</td>
-<td>
-Correct account references
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/2c2c5ceca7681fccb9967a520d5dd033d6403e57/analysis/equity_curve.Rmd" target="_blank">2c2c5ce</a>
-</td>
-<td>
-Tim Trice
-</td>
-<td>
-2019-03-07
-</td>
-<td>
-Minor formatting changes
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/eb1b0eb614e174b587ecce606b63cd95d96a1336/analysis/equity_curve.Rmd" target="_blank">eb1b0eb</a>
-</td>
-<td>
-Tim Trice
-</td>
-<td>
-2019-03-07
-</td>
-<td>
-Modify sources
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/b2fa9ee7bdf7f872cb78a28d2f814e4a6e19ad8c/analysis/equity_curve.Rmd" target="_blank">b2fa9ee</a>
-</td>
-<td>
-Tim Trice
-</td>
-<td>
-2019-03-07
-</td>
-<td>
-Do not echo code
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/974156a84af873cea57a42f552178ad74ebb41fa/analysis/equity_curve.Rmd" target="_blank">974156a</a>
-</td>
-<td>
-Tim Trice
-</td>
-<td>
-2019-03-07
-</td>
-<td>
-Add Author, Date to yaml
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://glcdn.githack.com/triceanalytics/finance/connors_rsi/raw/6cae50d43df2a8d693910759ca0a11205e6c5864/docs/equity_curve.html" target="_blank">6cae50d</a>
-</td>
-<td>
-Tim Trice
-</td>
-<td>
-2019-03-03
-</td>
-<td>
-Add docs
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/554e2d6fc4e8c777fe8aefc0792e7e1e1af30297/analysis/equity_curve.Rmd" target="_blank">554e2d6</a>
-</td>
-<td>
-Tim Trice
-</td>
-<td>
-2019-01-27
-</td>
-<td>
-Add theo portfolio
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/bd2d8f0c2df7ad201bc5100e715c8e0eb31853d2/analysis/equity_curve.Rmd" target="_blank">bd2d8f0</a>
-</td>
-<td>
-Tim Trice
-</td>
-<td>
-2018-09-29
-</td>
-<td>
-Refactor func <code>load_data</code>
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/828e53e221d2e2187bbdbadddc554dff41c73cc2/analysis/equity_curve.Rmd" target="_blank">828e53e</a>
-</td>
-<td>
-Tim Trice
-</td>
-<td>
-2018-09-09
-</td>
-<td>
-Turn off errors
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/f3c8fbfae6e8272e6f42dac447cfe4bd404d698e/analysis/equity_curve.Rmd" target="_blank">f3c8fbf</a>
-</td>
-<td>
-Tim Trice
-</td>
-<td>
-2018-09-09
-</td>
-<td>
-Add Equity Curve
+Add Exploratory
 </td>
 </tr>
 </tbody>
@@ -715,93 +549,32 @@ Add Equity Curve
 </div>
 </div>
 </div>
-<div id="section" class="section level2 tabset">
-<h2></h2>
-<div id="portfolio" class="section level3">
-<h3>Portfolio</h3>
-<p><img src="figure/equity_curve.Rmd/equity-curve-1.png" width="1500" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-equity-curve-1">
-Past versions of equity-curve-1.png
-</button>
-</p>
-<div id="fig-equity-curve-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/6cae50d43df2a8d693910759ca0a11205e6c5864/docs/figure/equity_curve.Rmd/equity-curve-1.png" target="_blank">6cae50d</a>
-</td>
-<td>
-Tim Trice
-</td>
-<td>
-2019-03-03
-</td>
-</tr>
-</tbody>
-</table>
+<div id="data" class="section level3">
+<h3>Data</h3>
 </div>
+<div id="indicators" class="section level3">
+<h3>Indicators</h3>
 </div>
+<div id="signals" class="section level3">
+<h3>Signals</h3>
 </div>
-<div id="theo-portfolio" class="section level3">
-<h3>Theo Portfolio</h3>
-<p><img src="figure/equity_curve.Rmd/equity-curve-theo-portfolio-1.png" width="1500" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-equity-curve-theo-portfolio-1">
-Past versions of equity-curve-theo-portfolio-1.png
-</button>
-</p>
-<div id="fig-equity-curve-theo-portfolio-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/6cae50d43df2a8d693910759ca0a11205e6c5864/docs/figure/equity_curve.Rmd/equity-curve-theo-portfolio-1.png" target="_blank">6cae50d</a>
-</td>
-<td>
-Tim Trice
-</td>
-<td>
-2019-03-03
-</td>
-</tr>
-</tbody>
-</table>
+<div id="analysis" class="section level2">
+<h2>Analysis</h2>
+<div id="trade-validation" class="section level3">
+<h3>Trade validation</h3>
+<pre><code>[1] TRUE</code></pre>
 </div>
+<div id="cumulative-returns" class="section level3">
+<h3>Cumulative Returns</h3>
+<p><img src="figure/exploratory.Rmd/cumulative-return-1.png" width="1500" style="display: block; margin: auto;" /></p>
 </div>
+<div id="drawdown" class="section level3">
+<h3>Drawdown</h3>
+<p><img src="figure/exploratory.Rmd/drawdown-1.png" width="1500" style="display: block; margin: auto;" /></p>
 </div>
-<div id="benchmark-portfolio" class="section level3">
-<h3>Benchmark Portfolio</h3>
-<img src="figure/equity_curve.Rmd/equity-curve-benchmark-portfolio-1.png" width="1500" style="display: block; margin: auto;" /> <br> <br>
+<div id="projected-equity-curve" class="section level3">
+<h3>Projected Equity Curve</h3>
+<img src="figure/exploratory.Rmd/equity-curve-1.png" width="1500" style="display: block; margin: auto;" /> <br> <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
 <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
@@ -826,27 +599,34 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] purrr_0.2.5                hrbrthemes_0.5.0.1        
- [3] glue_1.3.0                 ggplot2_3.1.0             
- [5] blotter_0.14.2             PerformanceAnalytics_1.5.2
- [7] FinancialInstrument_1.3.1  quantmod_0.4-13           
- [9] TTR_0.23-4                 xts_0.11-2                
-[11] zoo_1.8-4                 
+ [1] bindrcpp_0.2.2             tsibble_0.6.2             
+ [3] tidyquant_0.5.5            forcats_0.3.0             
+ [5] stringr_1.3.1              dplyr_0.7.8               
+ [7] purrr_0.2.5                readr_1.3.1               
+ [9] tidyr_0.8.2                tibble_1.4.2              
+[11] ggplot2_3.1.0              tidyverse_1.2.1           
+[13] quantmod_0.4-13            TTR_0.23-4                
+[15] PerformanceAnalytics_1.5.2 xts_0.11-2                
+[17] zoo_1.8-4                  lubridate_1.7.4           
+[19] tidyfinance_0.0.0.9000     skimr_1.0.3               
+[21] hrbrthemes_0.5.0.1        
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.0       bindr_0.1.1      pillar_1.3.1     compiler_3.5.2  
- [5] git2r_0.23.0     plyr_1.8.4       workflowr_1.2.0  iterators_1.0.10
- [9] tools_3.5.2      extrafont_0.17   boot_1.3-20      digest_0.6.18   
-[13] tibble_1.4.2     evaluate_0.12    gtable_0.2.0     lattice_0.20-38 
-[17] pkgconfig_2.0.2  rlang_0.3.0.1    foreach_1.4.4    curl_3.2        
-[21] yaml_2.2.0       xfun_0.4         bindrcpp_0.2.2   Rttf2pt1_1.3.7  
-[25] withr_2.1.2      dplyr_0.7.8      stringr_1.3.1    knitr_1.21      
-[29] fs_1.2.6         tidyselect_0.2.5 rprojroot_1.3-2  grid_3.5.2      
-[33] here_0.1         R6_2.3.0         rmarkdown_1.11   extrafontdb_1.0 
-[37] magrittr_1.5     whisker_0.3-2    backports_1.1.3  scales_1.0.0    
-[41] codetools_0.2-15 htmltools_0.3.6  assertthat_0.2.0 colorspace_1.3-2
-[45] labeling_0.3     quadprog_1.5-5   stringi_1.2.4    lazyeval_0.2.1  
-[49] munsell_0.5.0    crayon_1.3.4    </code></pre>
+ [1] httr_1.4.0       jsonlite_1.6     here_0.1         modelr_0.1.2    
+ [5] assertthat_0.2.0 cellranger_1.1.0 yaml_2.2.0       Rttf2pt1_1.3.7  
+ [9] pillar_1.3.1     backports_1.1.3  lattice_0.20-38  glue_1.3.0      
+[13] quadprog_1.5-5   extrafontdb_1.0  digest_0.6.18    rvest_0.3.2     
+[17] tibbletime_0.1.1 colorspace_1.3-2 htmltools_0.3.6  plyr_1.8.4      
+[21] pkgconfig_2.0.2  broom_0.5.1      haven_2.0.0      scales_1.0.0    
+[25] whisker_0.3-2    git2r_0.23.0     generics_0.0.2   withr_2.1.2     
+[29] lazyeval_0.2.1   cli_1.0.1        magrittr_1.5     crayon_1.3.4    
+[33] readxl_1.2.0     evaluate_0.12    fs_1.2.6         nlme_3.1-137    
+[37] xml2_1.2.0       tools_3.5.2      hms_0.4.2        munsell_0.5.0   
+[41] compiler_3.5.2   rlang_0.3.0.1    grid_3.5.2       rstudioapi_0.8  
+[45] timetk_0.1.1.1   labeling_0.3     rmarkdown_1.11   gtable_0.2.0    
+[49] curl_3.2         R6_2.3.0         knitr_1.21       extrafont_0.17  
+[53] bindr_0.1.1      workflowr_1.2.0  rprojroot_1.3-2  Quandl_2.9.1    
+[57] stringi_1.2.4    Rcpp_1.0.0       tidyselect_0.2.5 xfun_0.4        </code></pre>
 </div>
 </div>
 </div>

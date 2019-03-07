@@ -9,7 +9,9 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="Tim Trice" />
 
+<meta name="date" content="2019-03-07" />
 
 <title>Chart Reconcile</title>
 
@@ -281,23 +283,26 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="account_returns.html">Account Returns</a>
-</li>
-<li>
-  <a href="equity_curve.html">Equity Curve</a>
-</li>
-<li>
-  <a href="chart_reconcile.html">Chart Reconcile</a>
+  <a href="exploratory.html">Exploratory</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fa fa-gear"></span>
      
-    Additional Statistics
+    Statistics
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="account_returns.html">Account Returns</a>
+    </li>
+    <li>
+      <a href="equity_curve.html">Equity Curve</a>
+    </li>
+    <li>
+      <a href="chart_reconcile.html">Chart Reconcile</a>
+    </li>
     <li>
       <a href="daily_statistics.html">Daily Statistics</a>
     </li>
@@ -321,8 +326,8 @@ $(document).ready(function () {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://gitlab.com/triceanalytics/finance/connors_rsi">
-    <span class="fa fa-gitlab"></span>
+  <a href="https://github.com/timtrice/connors_rsi">
+    <span class="fa fa-gigthub"></span>
      
   </a>
 </li>
@@ -343,15 +348,19 @@ div.section {
 
 
 <h1 class="title toc-ignore">Chart Reconcile</h1>
+<h4 class="author"><em>Tim Trice</em></h4>
+<h4 class="date"><em>2019-03-07</em></h4>
 
 </div>
 
 <div id="TOC">
 <ul>
+<li><a href="#section"></a><ul>
 <li><a href="#iwm">IWM</a></li>
 <li><a href="#qqq">QQQ</a></li>
 <li><a href="#spy">SPY</a></li>
 <li><a href="#tlt">TLT</a></li>
+</ul></li>
 </ul>
 </div>
 
@@ -375,7 +384,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-02-26
+<strong>Last updated:</strong> 2019-03-07
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -454,10 +463,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgitlabcomtriceanalyticsfinanceconnorsrsitree87362eb2c6433c5d88b3d5e2428d46757f1f7ee5targetblank87362eba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://gitlab.com/triceanalytics/finance/connors_rsi/tree/87362eb2c6433c5d88b3d5e2428d46757f1f7ee5" target="_blank">87362eb</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgitlabcomtriceanalyticsfinanceconnorsrsitree0fe9ff9291c12f054fd71916c7651f8ddfa5c271targetblank0fe9ff9a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://gitlab.com/triceanalytics/finance/connors_rsi/tree/0fe9ff9291c12f054fd71916c7651f8ddfa5c271" target="_blank">0fe9ff9</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgitlabcomtriceanalyticsfinanceconnorsrsitree87362eb2c6433c5d88b3d5e2428d46757f1f7ee5targetblank87362eba" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgitlabcomtriceanalyticsfinanceconnorsrsitree0fe9ff9291c12f054fd71916c7651f8ddfa5c271targetblank0fe9ff9a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -467,20 +476,14 @@ Ignored files:
     Ignored:    .RData
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    docs/
+    Ignored:    analysis/figure/
 
 Untracked files:
-    Untracked:  data/blotter_bh.rda
-    Untracked:  data/env_bh.rda
-    Untracked:  data/instruments_bh.RData
+    Untracked:  docs/child/
+    Untracked:  docs/figure/exploratory.Rmd/
 
 Unstaged changes:
     Modified:   README.md
-    Modified:   analysis/account_returns.Rmd
-    Modified:   analysis/child/child_chart_reconcile.Rmd
-    Modified:   code/05_strategy_buy_hold.R
-    Modified:   data/instruments.RData
-    Modified:   data/results.RData
 
 </code></pre>
 <p>
@@ -519,6 +522,91 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/2c2c5ceca7681fccb9967a520d5dd033d6403e57/analysis/chart_reconcile.Rmd" target="_blank">2c2c5ce</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-07
+</td>
+<td>
+Minor formatting changes
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/eb1b0eb614e174b587ecce606b63cd95d96a1336/analysis/chart_reconcile.Rmd" target="_blank">eb1b0eb</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-07
+</td>
+<td>
+Modify sources
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/b2fa9ee7bdf7f872cb78a28d2f814e4a6e19ad8c/analysis/chart_reconcile.Rmd" target="_blank">b2fa9ee</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-07
+</td>
+<td>
+Do not echo code
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/974156a84af873cea57a42f552178ad74ebb41fa/analysis/chart_reconcile.Rmd" target="_blank">974156a</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-07
+</td>
+<td>
+Add Author, Date to yaml
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://glcdn.githack.com/triceanalytics/finance/connors_rsi/raw/6cae50d43df2a8d693910759ca0a11205e6c5864/docs/chart_reconcile.html" target="_blank">6cae50d</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-03
+</td>
+<td>
+Add docs
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -577,61 +665,174 @@ Add Chart Reconcile
 </div>
 </div>
 </div>
-<pre class="r"><code>library(blotter)
-library(ggplot2)
-library(glue)
-library(hrbrthemes)
-library(purrr)</code></pre>
-<pre class="r"><code>source(here::here(&quot;./code/02_settings.R&quot;))
-source(here::here(&quot;./code/03_functions.R&quot;))</code></pre>
-<pre class="r"><code>load_data()</code></pre>
 <p>Details The theoretical trades, positions, and P&amp;L are plotted first, in the ‘light’ versions of the colors, and then the actual values are overplotted in the main color. If they agree completely, the theoretical values will not be visible. Differences will make themselves visible by misalignment of the symbols or lines.</p>
 <p>The fourth panel is the difference in P&amp;L between the theoretical and actual values, and could be considered ‘slippage’, which could be positive or negative. It is calculated by subtracting the theoretical P&amp;L from the actual P&amp;L. If parameter PLdiff is ‘cumulative’, then this panel will display the cumsum of difference between the theoretical and actual portfolios. If parameter PLdiff is ‘episodic’ it will display the differences in P&amp;L</p>
 <p>The data parameter allows the user to either View or return the data calculated inside the chart. Default FALSE (only chart)</p>
-<pre class="r"><code>src &lt;- map(
-  .x = sort(symbols), 
-  .f = function(x) {
-    knitr::knit_expand(
-      file = here::here(&quot;./analysis/child/child_chart_reconcile.Rmd&quot;), 
-      symbol = x
-    )
-  }
-)</code></pre>
+<div id="section" class="section level2 tabset">
+<h2></h2>
 <div id="iwm" class="section level3">
 <h3>IWM</h3>
-<pre class="r"><code>chart.Reconcile(
-  theoPort = bh_portfolio, 
-  actualPort = portfolio, 
-  Symbol = &quot;IWM&quot;
-)</code></pre>
 <p><img src="figure/chart_reconcile.Rmd/chart-reconcile-IWM-1.png" width="1500" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-chart-reconcile-IWM-1">
+Past versions of chart-reconcile-IWM-1.png
+</button>
+</p>
+<div id="fig-chart-reconcile-IWM-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/6cae50d43df2a8d693910759ca0a11205e6c5864/docs/figure/chart_reconcile.Rmd/chart-reconcile-IWM-1.png" target="_blank">6cae50d</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="qqq" class="section level3">
 <h3>QQQ</h3>
-<pre class="r"><code>chart.Reconcile(
-  theoPort = bh_portfolio, 
-  actualPort = portfolio, 
-  Symbol = &quot;QQQ&quot;
-)</code></pre>
 <p><img src="figure/chart_reconcile.Rmd/chart-reconcile-QQQ-1.png" width="1500" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-chart-reconcile-QQQ-1">
+Past versions of chart-reconcile-QQQ-1.png
+</button>
+</p>
+<div id="fig-chart-reconcile-QQQ-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/6cae50d43df2a8d693910759ca0a11205e6c5864/docs/figure/chart_reconcile.Rmd/chart-reconcile-QQQ-1.png" target="_blank">6cae50d</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="spy" class="section level3">
 <h3>SPY</h3>
-<pre class="r"><code>chart.Reconcile(
-  theoPort = bh_portfolio, 
-  actualPort = portfolio, 
-  Symbol = &quot;SPY&quot;
-)</code></pre>
 <p><img src="figure/chart_reconcile.Rmd/chart-reconcile-SPY-1.png" width="1500" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-chart-reconcile-SPY-1">
+Past versions of chart-reconcile-SPY-1.png
+</button>
+</p>
+<div id="fig-chart-reconcile-SPY-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/6cae50d43df2a8d693910759ca0a11205e6c5864/docs/figure/chart_reconcile.Rmd/chart-reconcile-SPY-1.png" target="_blank">6cae50d</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="tlt" class="section level3">
 <h3>TLT</h3>
-<pre class="r"><code>chart.Reconcile(
-  theoPort = bh_portfolio, 
-  actualPort = portfolio, 
-  Symbol = &quot;TLT&quot;
-)</code></pre>
 <p><img src="figure/chart_reconcile.Rmd/chart-reconcile-TLT-1.png" width="1500" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-chart-reconcile-TLT-1">
+Past versions of chart-reconcile-TLT-1.png
+</button>
+</p>
+<div id="fig-chart-reconcile-TLT-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/6cae50d43df2a8d693910759ca0a11205e6c5864/docs/figure/chart_reconcile.Rmd/chart-reconcile-TLT-1.png" target="_blank">6cae50d</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br> <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -639,7 +840,6 @@ source(here::here(&quot;./code/03_functions.R&quot;))</code></pre>
 </button>
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
-<pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 3.5.2 (2018-12-20)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Ubuntu 16.04.5 LTS
@@ -679,6 +879,7 @@ loaded via a namespace (and not attached):
 [41] codetools_0.2-15 htmltools_0.3.6  assertthat_0.2.0 colorspace_1.3-2
 [45] quadprog_1.5-5   stringi_1.2.4    lazyeval_0.2.1   munsell_0.5.0   
 [49] crayon_1.3.4    </code></pre>
+</div>
 </div>
 </div>
 

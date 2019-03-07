@@ -9,7 +9,9 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="Tim Trice" />
 
+<meta name="date" content="2019-03-07" />
 
 <title>Maximum MAE/MFE Excursion</title>
 
@@ -281,23 +283,26 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="account_returns.html">Account Returns</a>
-</li>
-<li>
-  <a href="equity_curve.html">Equity Curve</a>
-</li>
-<li>
-  <a href="chart_reconcile.html">Chart Reconcile</a>
+  <a href="exploratory.html">Exploratory</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fa fa-gear"></span>
      
-    Additional Statistics
+    Statistics
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="account_returns.html">Account Returns</a>
+    </li>
+    <li>
+      <a href="equity_curve.html">Equity Curve</a>
+    </li>
+    <li>
+      <a href="chart_reconcile.html">Chart Reconcile</a>
+    </li>
     <li>
       <a href="daily_statistics.html">Daily Statistics</a>
     </li>
@@ -321,8 +326,8 @@ $(document).ready(function () {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://gitlab.com/triceanalytics/finance/connors_rsi">
-    <span class="fa fa-gitlab"></span>
+  <a href="https://github.com/timtrice/connors_rsi">
+    <span class="fa fa-gigthub"></span>
      
   </a>
 </li>
@@ -343,6 +348,8 @@ div.section {
 
 
 <h1 class="title toc-ignore">Maximum MAE/MFE Excursion</h1>
+<h4 class="author"><em>Tim Trice</em></h4>
+<h4 class="date"><em>2019-03-07</em></h4>
 
 </div>
 
@@ -383,7 +390,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-02-26
+<strong>Last updated:</strong> 2019-03-07
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -462,10 +469,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgitlabcomtriceanalyticsfinanceconnorsrsitree87362eb2c6433c5d88b3d5e2428d46757f1f7ee5targetblank87362eba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://gitlab.com/triceanalytics/finance/connors_rsi/tree/87362eb2c6433c5d88b3d5e2428d46757f1f7ee5" target="_blank">87362eb</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgitlabcomtriceanalyticsfinanceconnorsrsitree0fe9ff9291c12f054fd71916c7651f8ddfa5c271targetblank0fe9ff9a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://gitlab.com/triceanalytics/finance/connors_rsi/tree/0fe9ff9291c12f054fd71916c7651f8ddfa5c271" target="_blank">0fe9ff9</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgitlabcomtriceanalyticsfinanceconnorsrsitree87362eb2c6433c5d88b3d5e2428d46757f1f7ee5targetblank87362eba" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgitlabcomtriceanalyticsfinanceconnorsrsitree0fe9ff9291c12f054fd71916c7651f8ddfa5c271targetblank0fe9ff9a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -475,20 +482,14 @@ Ignored files:
     Ignored:    .RData
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    docs/
+    Ignored:    analysis/figure/
 
 Untracked files:
-    Untracked:  data/blotter_bh.rda
-    Untracked:  data/env_bh.rda
-    Untracked:  data/instruments_bh.RData
+    Untracked:  docs/child/
+    Untracked:  docs/figure/exploratory.Rmd/
 
 Unstaged changes:
     Modified:   README.md
-    Modified:   analysis/account_returns.Rmd
-    Modified:   analysis/child/child_chart_reconcile.Rmd
-    Modified:   code/05_strategy_buy_hold.R
-    Modified:   data/instruments.RData
-    Modified:   data/results.RData
 
 </code></pre>
 <p>
@@ -527,6 +528,91 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/2c2c5ceca7681fccb9967a520d5dd033d6403e57/analysis/maximum_adverse_favorable_excursion.Rmd" target="_blank">2c2c5ce</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-07
+</td>
+<td>
+Minor formatting changes
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/eb1b0eb614e174b587ecce606b63cd95d96a1336/analysis/maximum_adverse_favorable_excursion.Rmd" target="_blank">eb1b0eb</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-07
+</td>
+<td>
+Modify sources
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/b2fa9ee7bdf7f872cb78a28d2f814e4a6e19ad8c/analysis/maximum_adverse_favorable_excursion.Rmd" target="_blank">b2fa9ee</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-07
+</td>
+<td>
+Do not echo code
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/974156a84af873cea57a42f552178ad74ebb41fa/analysis/maximum_adverse_favorable_excursion.Rmd" target="_blank">974156a</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-07
+</td>
+<td>
+Add Author, Date to yaml
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://glcdn.githack.com/triceanalytics/finance/connors_rsi/raw/6cae50d43df2a8d693910759ca0a11205e6c5864/docs/maximum_adverse_favorable_excursion.html" target="_blank">6cae50d</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-03
+</td>
+<td>
+Add docs
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -585,75 +671,340 @@ Add MAE/MFE
 </div>
 </div>
 </div>
-<pre class="r"><code>library(blotter)
-library(purrr)</code></pre>
-<pre class="r"><code>source(here::here(&quot;./code/02_settings.R&quot;))
-source(here::here(&quot;./code/03_functions.R&quot;))</code></pre>
-<pre class="r"><code>load_data()</code></pre>
-<div id="maximum-adverse-excursion" class="section level2">
+<div id="maximum-adverse-excursion" class="section level2 tabset">
 <h2>Maximum Adverse Excursion</h2>
 <p>Largest loss in an open trade</p>
-<pre class="r"><code>src &lt;- map(
-  .x = sort(symbols), 
-  .f = function(x) {
-    knitr::knit_expand(
-      file = here::here(&quot;./analysis/child/child_maximum_adverse_excursion.Rmd&quot;), 
-      symbol = x
-    )
-  }
-)</code></pre>
 <div id="iwm" class="section level3">
 <h3>IWM</h3>
-<pre class="r"><code>chart.ME(Portfolio = portfolio, Symbol = &quot;IWM&quot;, type = &quot;MAE&quot;)</code></pre>
 <p><img src="figure/maximum_adverse_favorable_excursion.Rmd/mae-IWM-1.png" width="1500" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mae-IWM-1">
+Past versions of mae-IWM-1.png
+</button>
+</p>
+<div id="fig-mae-IWM-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/6cae50d43df2a8d693910759ca0a11205e6c5864/docs/figure/maximum_adverse_favorable_excursion.Rmd/mae-IWM-1.png" target="_blank">6cae50d</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="qqq" class="section level3">
 <h3>QQQ</h3>
-<pre class="r"><code>chart.ME(Portfolio = portfolio, Symbol = &quot;QQQ&quot;, type = &quot;MAE&quot;)</code></pre>
 <p><img src="figure/maximum_adverse_favorable_excursion.Rmd/mae-QQQ-1.png" width="1500" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mae-QQQ-1">
+Past versions of mae-QQQ-1.png
+</button>
+</p>
+<div id="fig-mae-QQQ-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/6cae50d43df2a8d693910759ca0a11205e6c5864/docs/figure/maximum_adverse_favorable_excursion.Rmd/mae-QQQ-1.png" target="_blank">6cae50d</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="spy" class="section level3">
 <h3>SPY</h3>
-<pre class="r"><code>chart.ME(Portfolio = portfolio, Symbol = &quot;SPY&quot;, type = &quot;MAE&quot;)</code></pre>
 <p><img src="figure/maximum_adverse_favorable_excursion.Rmd/mae-SPY-1.png" width="1500" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mae-SPY-1">
+Past versions of mae-SPY-1.png
+</button>
+</p>
+<div id="fig-mae-SPY-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/6cae50d43df2a8d693910759ca0a11205e6c5864/docs/figure/maximum_adverse_favorable_excursion.Rmd/mae-SPY-1.png" target="_blank">6cae50d</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="tlt" class="section level3">
 <h3>TLT</h3>
-<pre class="r"><code>chart.ME(Portfolio = portfolio, Symbol = &quot;TLT&quot;, type = &quot;MAE&quot;)</code></pre>
 <p><img src="figure/maximum_adverse_favorable_excursion.Rmd/mae-TLT-1.png" width="1500" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mae-TLT-1">
+Past versions of mae-TLT-1.png
+</button>
+</p>
+<div id="fig-mae-TLT-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/6cae50d43df2a8d693910759ca0a11205e6c5864/docs/figure/maximum_adverse_favorable_excursion.Rmd/mae-TLT-1.png" target="_blank">6cae50d</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-03
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<div id="maximum-favorable-excursion" class="section level2">
+</div>
+</div>
+<div id="maximum-favorable-excursion" class="section level2 tabset">
 <h2>Maximum Favorable Excursion</h2>
 <p>Peak profit in an open trade</p>
-<pre class="r"><code>src &lt;- map(
-  .x = sort(symbols), 
-  .f = function(x) {
-    knitr::knit_expand(
-      file = here::here(&quot;./analysis/child/child_maximum_favorable_excursion.Rmd&quot;), 
-      symbol = x
-    )
-  }
-)</code></pre>
 <div id="iwm-1" class="section level3">
 <h3>IWM</h3>
-<pre class="r"><code>chart.ME(Portfolio = portfolio, Symbol = &quot;IWM&quot;, type = &quot;MFE&quot;)</code></pre>
 <p><img src="figure/maximum_adverse_favorable_excursion.Rmd/mfe-IWM-1.png" width="1500" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mfe-IWM-1">
+Past versions of mfe-IWM-1.png
+</button>
+</p>
+<div id="fig-mfe-IWM-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/6cae50d43df2a8d693910759ca0a11205e6c5864/docs/figure/maximum_adverse_favorable_excursion.Rmd/mfe-IWM-1.png" target="_blank">6cae50d</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="qqq-1" class="section level3">
 <h3>QQQ</h3>
-<pre class="r"><code>chart.ME(Portfolio = portfolio, Symbol = &quot;QQQ&quot;, type = &quot;MFE&quot;)</code></pre>
 <p><img src="figure/maximum_adverse_favorable_excursion.Rmd/mfe-QQQ-1.png" width="1500" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mfe-QQQ-1">
+Past versions of mfe-QQQ-1.png
+</button>
+</p>
+<div id="fig-mfe-QQQ-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/6cae50d43df2a8d693910759ca0a11205e6c5864/docs/figure/maximum_adverse_favorable_excursion.Rmd/mfe-QQQ-1.png" target="_blank">6cae50d</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="spy-1" class="section level3">
 <h3>SPY</h3>
-<pre class="r"><code>chart.ME(Portfolio = portfolio, Symbol = &quot;SPY&quot;, type = &quot;MFE&quot;)</code></pre>
 <p><img src="figure/maximum_adverse_favorable_excursion.Rmd/mfe-SPY-1.png" width="1500" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mfe-SPY-1">
+Past versions of mfe-SPY-1.png
+</button>
+</p>
+<div id="fig-mfe-SPY-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/6cae50d43df2a8d693910759ca0a11205e6c5864/docs/figure/maximum_adverse_favorable_excursion.Rmd/mfe-SPY-1.png" target="_blank">6cae50d</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="tlt-1" class="section level3">
 <h3>TLT</h3>
-<pre class="r"><code>chart.ME(Portfolio = portfolio, Symbol = &quot;TLT&quot;, type = &quot;MFE&quot;)</code></pre>
 <p><img src="figure/maximum_adverse_favorable_excursion.Rmd/mfe-TLT-1.png" width="1500" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mfe-TLT-1">
+Past versions of mfe-TLT-1.png
+</button>
+</p>
+<div id="fig-mfe-TLT-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://gitlab.com/triceanalytics/finance/connors_rsi/blob/6cae50d43df2a8d693910759ca0a11205e6c5864/docs/figure/maximum_adverse_favorable_excursion.Rmd/mfe-TLT-1.png" target="_blank">6cae50d</a>
+</td>
+<td>
+Tim Trice
+</td>
+<td>
+2019-03-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br> <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -661,7 +1012,6 @@ source(here::here(&quot;./code/03_functions.R&quot;))</code></pre>
 </button>
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
-<pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 3.5.2 (2018-12-20)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Ubuntu 16.04.5 LTS
