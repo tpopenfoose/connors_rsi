@@ -7,7 +7,7 @@ output: workflowr::wflow_html
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  echo = TRUE, 
+  echo = FALSE, 
   message = TRUE, 
   warning = TRUE, 
   error = FALSE
