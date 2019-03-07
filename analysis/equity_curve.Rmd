@@ -71,7 +71,7 @@ getAccount(account)$summary$End.Eq %>%
 
 ### Theo Portfolio
 
-```{r equity-curve-theo-portfolio, echo = FALSE, fig.width = 10, fig.asp = 0.75, dpi = 150}
+```{r equity-curve-theo-portfolio, fig.width = 10, fig.asp = 0.75, dpi = 150}
 getAccount(bh_account)$summary$End.Eq %>% 
   data.frame(date = index(.)) %>% 
   ggplot() + 
@@ -100,7 +100,7 @@ getAccount(bh_account)$summary$End.Eq %>%
 
 ### Benchmark Portfolio
 
-```{r equity-curve-benchmark-portfolio, echo = FALSE, fig.width = 10, fig.asp = 0.75, dpi = 150}
+```{r equity-curve-benchmark-portfolio, fig.width = 10, fig.asp = 0.75, dpi = 150}
 getAccount(bm_account)$summary$End.Eq %>% 
   data.frame(date = index(.)) %>% 
   ggplot() + 
