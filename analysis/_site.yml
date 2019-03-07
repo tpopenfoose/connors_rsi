@@ -5,15 +5,17 @@ exclude: ["include"]
 navbar:
   title: "Connors RSI"
   left:
-    - text: "Account Returns"
-      href: account_returns.html
-    - text: "Equity Curve"
-      href: equity_curve.html
-    - text: "Chart Reconcile"
-      href: chart_reconcile.html
-    - text: "Additional Statistics"
+    - text: "Exploratory"
+      href: exploratory.html
+    - text: "Statistics"
       icon: fa-gear
       menu:
+      - text: "Account Returns"
+        href: account_returns.html
+      - text: "Equity Curve"
+        href: equity_curve.html
+      - text: "Chart Reconcile"
+        href: chart_reconcile.html
       - text: "Daily Statistics"
         href: daily_statistics.html
       - text: "Cumulative Returns"
