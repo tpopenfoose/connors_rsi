@@ -2,7 +2,7 @@
 library(quantstrat)
 library(TTR)
 
-source(here::here("./code/02_settings.R"))
+source(here::here("./code/settings.R"))
 
 # Settings ----
 Sys.setenv(TZ = "UTC")
@@ -251,7 +251,7 @@ purrr::walk(.x = c(account, bh_account, bm_account), .f = updateEndEq)
 ## Save ----
 
 #' Save Instruments from FinancialInstruments environment
-saveInstruments(file_name = "instruments.RData", dir = here::here("./data"))
+saveInstruments(file_name = "instruments.RData", dir = here::here("./output"))
 
 #' Save accounts
 a <- getAccount(Account = account)
@@ -263,4 +263,4 @@ p <- getPortfolio(Portfolio = portfolio)
 pbh <- getPortfolio(Portfolio = bh_portfolio)
 pbm <- getPortfolio(Portfolio = bm_portfolio)
 
-save(list = ls(), file = here::here("./data/results.RData"))
+save(list = ls(), file = here::here("./output/results.RData"))
