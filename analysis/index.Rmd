@@ -1,6 +1,7 @@
 ---
-title: "Exploratory Analysis"
-site: workflowr::wflow_site
+title: "Connor's RSI"
+author: "Tim Trice"
+date: "2019-03-07"
 output: workflowr::wflow_html
 editor_options: 
   chunk_output_type: console
