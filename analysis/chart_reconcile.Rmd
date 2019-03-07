@@ -38,6 +38,8 @@ The fourth panel is the difference in P&L between the theoretical and actual val
 
 The data parameter allows the user to either View or return the data calculated inside the chart. Default FALSE (only chart)
 
+## {.tabset}
+
 ```{r chart-reconcile}
 src <- map(
   .x = sort(symbols), 

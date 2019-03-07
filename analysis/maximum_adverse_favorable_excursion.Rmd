@@ -28,7 +28,7 @@ source(here::here("./code/functions.R"))
 load_data()
 ```
 
-## Maximum Adverse Excursion
+## Maximum Adverse Excursion {.tabset}
 
 Largest loss in an open trade
 
@@ -46,7 +46,7 @@ src <- map(
 
 `r knitr::knit(text = unlist(src))`
 
-## Maximum Favorable Excursion
+## Maximum Favorable Excursion {.tabset}
 
 Peak profit in an open trade
 

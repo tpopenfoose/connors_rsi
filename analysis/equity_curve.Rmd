@@ -38,7 +38,7 @@ equity <- a$summary$End.Eq
 plot(equity, main = "Consolidated Equity Curve")
 ```
 
-{.tabset}
+## {.tabset}
 
 ### Portfolio
 

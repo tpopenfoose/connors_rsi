@@ -28,7 +28,7 @@ source(here::here("./code/functions.R"))
 load_data()
 ```
 
-## Account Returns {.tabset}
+## {.tabset}
 
 ### Strategy Portfolio
 

@@ -1,5 +1,5 @@
 
-## {{title}}
+### {{title}}
 
 ```{r chart-posn-{{title}}, fig.width = 10, fig.asp = 1}
 chart.Posn(Portfolio = portfolio, Symbol = "{{title}}")

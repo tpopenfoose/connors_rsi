@@ -28,6 +28,8 @@ source(here::here("./code/functions.R"))
 load_data()
 ```
 
+## {.tabset}
+
 ```{r trade-statistics}
 src <- map(
   .x = sort(symbols), 

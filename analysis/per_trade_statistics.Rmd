@@ -28,8 +28,6 @@ source(here::here("./code/functions.R"))
 load_data()
 ```
 
-## Per-Trade Statistics
-
 ```{r per-trade-stats}
 for (symbol in symbols) {
     pts <- perTradeStats(Portfolio = portfolio, Symbol = symbol)
@@ -38,4 +36,3 @@ for (symbol in symbols) {
 
 knitr::kable(pts)
 ```
-

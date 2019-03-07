@@ -29,6 +29,8 @@ source(here::here("./code/functions.R"))
 load_data()
 ```
 
+## {.tabset}
+
 ```{r cumulative-returns}
 returns <- PortfReturns(Account = account)
 
