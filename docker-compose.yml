@@ -9,4 +9,4 @@ services:
     ports:
      - "8787:8787"
     environment:
-      - PASSWORD=connors_rsi
+      - PASSWORD=rstudio

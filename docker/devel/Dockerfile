@@ -5,6 +5,8 @@ RUN apt-get update
 RUN apt-get install -y \ 
     vim
 
+RUN Rscript -e 'upgrade.packages()'
+
 RUN install2.r -e \
     devtools \
     here \
@@ -14,10 +16,10 @@ RUN install2.r -e \
     workflowr
 
 RUN installGithub.r \ 
-    braverock/blotter \
-    braverock/quantstrat \
-    hrbrmstr/hrbrthemes \
-    DavisVaughan/tidyfinance
+    braverock/blotter@bc75cf5 \
+    braverock/quantstrat@be01b35 \
+    hrbrmstr/hrbrthemes@v0.6.0 \
+    DavisVaughan/tidyfinance@56917ea
 
 RUN cd /home/rstudio/.rstudio/monitored/user-settings/ \ 
   && mv user-settings user-settings.copy \ 

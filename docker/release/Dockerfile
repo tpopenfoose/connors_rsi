@@ -5,6 +5,8 @@ RUN apt-get update
 RUN apt-get install -y \ 
     vim
 
+RUN Rscript -e 'upgrade.packages()'
+
 RUN install2.r -e \
     devtools \
     here \
