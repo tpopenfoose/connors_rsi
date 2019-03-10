@@ -9,7 +9,7 @@ install.packages(
 devtools::install_github("braverock/blotter@bc75cf5") #' v0.14.2 (May 12)
 
 #' Quantstrat
-devtools::install_github("braverock/quantstrat@b301b35") #' v0.14.6 (Jun 27)
+devtools::install_github("braverock/quantstrat@be01b35") #' v0.14.6 (Jun 27)
 
 #' hrbrthemes (not required but I like it and it's in use)
 devtools::install_github("hrbrmstr/hrbrthemes@v0.6.0") #' Apr 29
