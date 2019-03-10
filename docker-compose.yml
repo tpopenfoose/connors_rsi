@@ -1,0 +1,12 @@
+version: '3'
+services:
+  connors_rsi:
+    image: timtrice/connors_rsi:release
+    container_name: connors_rsi
+    restart: "no"
+    volumes:
+      - .:/home/rstudio/connors_rsi
+    ports:
+     - "8787:8787"
+    environment:
+      - PASSWORD=connors_rsi
